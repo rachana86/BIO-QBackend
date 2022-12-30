@@ -28,6 +28,7 @@ db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.reqmnts = require("./reqmnts.model.js")(sequelize, Sequelize);
 db.testcases = require("./testcases.model.js")(sequelize, Sequelize);
+db.projects = require("./project.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
