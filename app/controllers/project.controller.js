@@ -1,14 +1,46 @@
-const db = require("../models");
-const Project = db.projects;
-const Op = db.Sequelize.Op;
+const Project = require("../models/project.model.js");
+
 
 // Create and Save a new Project
 exports.create = (req, res) => {
-  
+   // Validate request
+   if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  // Create a Project
+  const project = new Project({
+    title: req.body.title,
+    description: req.body.description,
+    published: req.body.published || false,
+    createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+    updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+  });
+
+  // Save Project in the database
+  Project.create(project, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Project."
+      });
+    else res.send(data);
+  });
 };
 
 // Retrieve all Projects from the database.
 exports.findAll = (req, res) => {
+    const title = req.query.title;
+
+    Project.getAll(title, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving projects."
+        });
+      else res.send(data);
+    });
   
 };
 
