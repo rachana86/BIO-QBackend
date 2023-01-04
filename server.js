@@ -33,9 +33,9 @@ const Role = db.role;
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/project.routes')(app);
-db.sequelize.sync();
+//db.sequelize.sync();
 
-/*
+
 db.sequelize.sync({ force: true }).then(() => {
   initial();
   console.log("Drop and re-sync db.");

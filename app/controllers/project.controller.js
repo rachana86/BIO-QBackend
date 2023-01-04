@@ -1,4 +1,4 @@
-const Project = require("../models/project.model.js");
+const Project = require("../models/project.model");
 
 
 // Create and Save a new Project
@@ -46,22 +46,53 @@ exports.findAll = (req, res) => {
 
 // Find a single Project with an id
 exports.findOne = (req, res) => {
-  
+  const id = req.params['id'];
+  Project.findById(id, (err, data)=> {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving projects."
+      });
+    else res.send(data);
+  })
 };
 
 // Update a Project by the id in the request
 exports.update = (req, res) => {
-  
+  const id = req.params['id'];
+  Project.updateById(id, req.body, (err, data)=> {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while updating projects."
+      });
+    else res.send(data);
+  })
 };
 
 // Delete a Project with the specified id in the request
 exports.delete = (req, res) => {
-  
+  const id = req.params['id'];
+  Project.remove(id, (err, data)=> {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing projects."
+      });
+    else res.send(data);
+  })
 };
 
 // Delete all Projects from the database.
 exports.deleteAll = (req, res) => {
-  
+  Project.removeAll((err, data)=> {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing projects."
+      });
+    else res.send(data);
+  })
 };
 
 // Find all published Projects
