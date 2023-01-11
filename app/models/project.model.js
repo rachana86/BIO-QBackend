@@ -1,5 +1,17 @@
 const sql = require("./db.js");
 
+/*
+  CREATE TABLE IF NOT EXISTS `projects` (
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  description varchar(255),
+  published BOOLEAN DEFAULT false,
+  createdAt DATETIME NOT NULL,
+  updatedAt DATETIME, 
+  createdBy varchar(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
+
 // constructor
 const Project = function(project) {
   this.title = project.title;
@@ -8,6 +20,7 @@ const Project = function(project) {
   this.createdAt = project.createdAt;
   this.updatedAt = project.updatedAt;
 };
+
 
 Project.create = (newProject, result) => {
   sql.query("INSERT INTO projects SET ?", newProject, (err, res) => {
