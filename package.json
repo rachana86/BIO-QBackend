@@ -15,8 +15,9 @@
     "express": "^4.18.2",
     "http-server": "^14.1.1",
     "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.25.8"
+    "sequelize": "^6.27.0"
   },
   "keywords": [
     "node.js",
@@ -24,5 +25,13 @@
     "jwt",
     "authentication",
     "mysql"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachana86/BIO-QBackend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rachana86/BIO-QBackend/issues"
+  },
+  "homepage": "https://github.com/rachana86/BIO-QBackend#readme"
 }

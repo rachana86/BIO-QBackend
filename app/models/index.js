@@ -26,7 +26,7 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
-db.reqmnts = require("./reqmnts.model.js")(sequelize, Sequelize);
+db.requirements = require("./requirements.model.js")(sequelize, Sequelize);
 db.testcases = require("./testcases.model.js")(sequelize, Sequelize);
 db.projects = require("./project.model.js")(sequelize, Sequelize);
 
@@ -39,26 +39,6 @@ db.user.belongsToMany(db.role, {
   through: "user_roles",
   foreignKey: "userId",
   otherKey: "roleId"
-});
-db.reqmnts.belongsToMany(db.user, {
-  through: "user_reqmnts",
-  foreignKey: "reqmntsId",
-  otherKey: "userId"
-});
-db.user.belongsToMany(db.reqmnts, {
-  through: "user_reqmnts",
-  foreignKey: "userId",
-  otherKey: "reqmntsId"
-});
-db.testcases.belongsToMany(db.user, {
-  through: "user_testcases",
-  foreignKey: "testcasesId",
-  otherKey: "userId"
-});
-db.user.belongsToMany(db.testcases, {
-  through: "user_testcases",
-  foreignKey: "userId",
-  otherKey: "testcasesId"
 });
 
 db.ROLES = ["user", "admin", "moderator"];
