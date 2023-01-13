@@ -7,6 +7,8 @@ const Project = function(project) {
   this.published = project.published;
   this.createdAt = project.createdAt;
   this.updatedAt = project.updatedAt;
+  this.updatedUser = project.updatedUser;
+  this.createdUser = project.createdUser;
 };
 
 Project.create = (newProject, result) => {
@@ -75,8 +77,8 @@ Project.getAllPublished = result => {
 
 Project.updateById = (id, project, result) => {
   sql.query(
-    "UPDATE projects SET title = ?, description = ?, published = ? WHERE id = ?",
-    [project.title, project.description, project.published, id],
+    "UPDATE projects SET title = ?, description = ?, published = ?, updatedUser = ? WHERE id = ?",
+    [project.title, project.description, project.published, project.updatedUser, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

@@ -15,7 +15,9 @@ exports.create = (req, res) => {
     description: req.body.description,
     published: req.body.published || false,
     createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-    updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+    createdUser: req.body.createdUser,
+    updatedUser: req.body.updatedUser
   });
 
   // Save Project in the database
