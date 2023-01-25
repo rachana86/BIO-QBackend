@@ -32,8 +32,9 @@ exports.create = (req, res) => {
 // Retrieve all Requirements from the database.
 exports.findAll = (req, res) => {
     const title = req.query.title;
+    const project = req.query.project;
 
-    Requirement.getAll(title, (err, data) => {
+    Requirement.getAll(title,project, (err, data) => {
       if (err)
         res.status(500).send({
           message:

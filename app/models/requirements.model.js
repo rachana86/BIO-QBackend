@@ -54,11 +54,15 @@ Requirement.findById = (id, result) => {
   });
 };
 
-Requirement.getAll = (title, result) => {
+Requirement.getAll = (title, project, result) => {
   let query = "SELECT * FROM requirements";
 
   if (title) {
     query += ` WHERE title LIKE '%${title}%'`;
+  }
+
+  if (project) {
+    query += ` WHERE projectId = ${project}`;
   }
 
   sql.query(query, (err, res) => {
