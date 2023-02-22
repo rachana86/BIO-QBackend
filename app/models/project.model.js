@@ -8,7 +8,8 @@ const sql = require("./db.js");
   published BOOLEAN DEFAULT false,
   createdAt DATETIME NOT NULL,
   updatedAt DATETIME, 
-  createdBy varchar(255)
+  updatedUser varchar(255),
+  createdUser varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */
 

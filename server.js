@@ -34,6 +34,8 @@ require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/project.routes')(app);
 require('./app/routes/requirements.routes')(app);
+require('./app/routes/testcases.routes')(app);
+require('./app/routes/steps.routes')(app);
 db.sequelize.sync();
 
 /*
