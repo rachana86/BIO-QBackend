@@ -92,8 +92,16 @@ Requirement.getAllPublished = result => {
 
 Requirement.updateById = (id, requirement, result) => {
   sql.query(
-    "UPDATE requirements SET title = ?, description = ? WHERE id = ?",
-    [requirement.title, requirement.description, id],
+    'UPDATE requirements SET title = ?,  description = ?, riskimpact = ?, gampcat = ?, riskrating = ?, testtype = ?, updatedUser = ?,updatedAt = ? WHERE id = ?',
+    [requirement.title, 
+    requirement.description, 
+    requirement.riskimpact, 
+    requirement.gampcat, 
+    requirement.riskrating, 
+    requirement.testtype, 
+    requirement.updatedUser,
+    requirement.updatedAt,
+    id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

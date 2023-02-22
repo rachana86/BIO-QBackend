@@ -14,8 +14,14 @@ exports.create = (req, res) => {
     title: req.body.title,
     description: req.body.description,
     project_id: req.body.projectId,
+    riskimpact: req.body.riskimpact,
+    gampcat: req.body.gampcat,
+    riskrating: req.body.riskrating,
+    testtype: req.body.testtype,
     createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
-    updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+    createdUser: req.body.user,
+    updatedUser: req.body.user
   });
 
   // Save requirement in the database
