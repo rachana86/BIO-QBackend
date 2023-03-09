@@ -7,6 +7,8 @@ module.exports = app => {
   
     // Retrieve all tablevalue
     router.get("/", tablevalues.findAll);
+ //group values
+    router.get("/group/:id", tablevalues.findbyGroup);
   
     // Retrieve all published tablevalues
     router.get("/published", tablevalues.findAllPublished);

@@ -1,4 +1,4 @@
-const Tablevalue = require("../models/tablevalue.model");
+const Tablevalue = require("../models/tablevalues.model");
 
 
 // Create and Save a new Tablevalue
@@ -11,17 +11,13 @@ exports.create = (req, res) => {
   }
   // Create a Tablevalue
   const tablevalue = new Tablevalue({
-    title: req.body.title,
+    groupid: req.body.groupid,
     description: req.body.description,
-    published: req.body.published || false,
+    option: req.body.option,
     createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
     updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
     createdUser: req.body.createdUser,
-    updatedUser: req.body.updatedUser,
-    riskimpact: req.body.riskimpact,
-    gampcat: req.body.gampcat,
-    riskrating: req.body.riskrating,
-    testtype: req.body.testtype
+    updatedUser: req.body.updatedUser
   });
 
   // Save Tablevalue in the database
@@ -37,7 +33,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Tablevalues from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
+    const description = req.query.description;
 
     Tablevalue.getAll(title, (err, data) => {
       if (err)
@@ -48,6 +44,21 @@ exports.findAll = (req, res) => {
       else res.send(data);
     });
   
+};
+
+// Retrieve all Tablevalues by group from the database.
+exports.findbyGroup = (req, res) => {
+  const groupid = req.params['id'];
+
+  Tablevalue.findbyGroup(groupid, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tablevalues."
+      });
+    else res.send(data);
+  });
+
 };
 
 // Find a single Tablevalue with an id
