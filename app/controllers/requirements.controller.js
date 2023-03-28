@@ -67,6 +67,7 @@ exports.findOne = (req, res) => {
 // Update a Requirement by the id in the request
 exports.update = (req, res) => {
   const id = req.params['id'];
+  req.body.updatedAt =new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
   Requirement.updateById(id, req.body, (err, data)=> {
     if (err)
       res.status(500).send({
