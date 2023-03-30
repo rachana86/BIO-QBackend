@@ -6,9 +6,14 @@ const sql = require("./db.js");
   title varchar(255) NOT NULL,
   description varchar(255),
   projectId int(11) NOT NULL,
+  riskimpact varchar(255),
+  gampcat varchar(255),
+  riskrating varchar(255),
+  testtype varchar(255),
   FOREIGN KEY (projectId) REFERENCES projects(id), 
   createdAt DATETIME NOT NULL,
-  updatedAt DATETIME, 
+  updatedAt DATETIME,
+  updatedUser varchar(255), 
   createdBy varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */

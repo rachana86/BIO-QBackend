@@ -5,8 +5,7 @@ const sql = require("./db.js");
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   groupid varchar(255) NOT NULL,
   description varchar(255),
-  projectId int(11) NOT NULL,
-  FOREIGN KEY (projectId) REFERENCES projects(id), 
+  `option` varchar(20), 
   createdAt DATETIME NOT NULL,
   updatedAt DATETIME, 
   createdBy varchar(255)
