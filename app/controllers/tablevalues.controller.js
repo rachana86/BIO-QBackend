@@ -35,7 +35,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     const description = req.query.description;
 
-    Tablevalue.getAll(title, (err, data) => {
+    Tablevalue.getAll(description, (err, data) => {
       if (err)
         res.status(500).send({
           message:

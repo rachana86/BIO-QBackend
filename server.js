@@ -36,6 +36,7 @@ require('./app/routes/project.routes')(app);
 require('./app/routes/requirements.routes')(app);
 require('./app/routes/testcases.routes')(app);
 require('./app/routes/steps.routes')(app);
+require('./app/routes/tasks.routes')(app);
 require('./app/routes/tablevalues.routes')(app);
 db.sequelize.sync();
 
