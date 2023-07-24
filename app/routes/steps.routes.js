@@ -4,6 +4,15 @@ module.exports = app => {
     
     // Create a new step
     router.post("/", steps.create);
+
+    // Link a requirement to step
+    router.post("/addRequirement", steps.addRequirement);
+
+    // Retrieve all requirements attached to step
+    router.get("/:id/requirements", steps.findReqByStepId);
+
+    // Retrieve all requirements maps
+    router.get("/requirements", steps.findReqByStepId);
   
     // Retrieve all step
     router.get("/", steps.findAll);

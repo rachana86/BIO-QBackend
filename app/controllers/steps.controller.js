@@ -1,4 +1,5 @@
 const Step = require("../models/steps.model");
+const StepRequirement = require("../models/step_requirement.model");
 
 
 // Create and Save a new Step
@@ -42,10 +43,24 @@ exports.findAll = (req, res) => {
           message:
             err.message || "Some error occurred while retrieving steps."
         });
-      else res.send(data);
-    });
+       else 
+       res.send(data); 
+      }
+    );
   
 };
+
+exports.findReqByStepId = (req, res) => {
+  const id = req.params['id'];
+  StepRequirement.getAll(id, null, (err, data)=> {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving steps."
+      });
+    else res.send(data);
+  });
+}
 
 // Find a single Step with an id
 exports.findOne = (req, res) => {
@@ -72,6 +87,37 @@ exports.update = (req, res) => {
     else res.send(data);
   })
 };
+
+exports.addRequirement = (req, res) => {
+  // Validate request
+  if (!req.body.requirements || !req.body.stepId ) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  StepRequirement.remove(req.body.stepId, (err, data)=> {
+  
+    // Create a Step-Requirement map
+  (req.body.requirements).map((requirement, index) => { 
+    console.log(requirement)
+  const stepRequirement = new StepRequirement({
+    stepId: req.body.stepId,
+    requirementId: requirement.value,
+    createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+    updatedAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+    createdBy: req.body.user
+  });
+
+  // Save step in the database
+  StepRequirement.addRequirement(stepRequirement, (err, data)=> {
+    if (err)
+    console.log(err)
+  else console.log(data)
+  });
+})
+  
+  });
+  };
 
 // Delete a Step with the specified id in the request
 exports.delete = (req, res) => {

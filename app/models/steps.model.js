@@ -12,6 +12,8 @@ const sql = require("./db.js");
   updatedAt DATETIME, 
   createdBy varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 */
 
 // constructor
@@ -79,7 +81,6 @@ Step.getAll = (description, testcaseId, result) => {
     result(null, res);
   });
 };
-
 
 Step.updateById = (id, step, result) => {
   sql.query(
